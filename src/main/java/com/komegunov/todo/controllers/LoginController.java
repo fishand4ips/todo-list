@@ -1,8 +1,10 @@
 package com.komegunov.todo.controllers;
 
-import com.komegunov.todo.repository.UserRepository;
+import com.komegunov.todo.repr.UserRepr;
+import com.komegunov.todo.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,13 @@ public class LoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+    private final UserService userService;
+
+    @Autowired
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping("/login")
     public String loginPage() {
         return "login";
@@ -24,24 +33,25 @@ public class LoginController {
 
     @GetMapping("/register")
     public String registerPage(Model model) {
-        model.addAttribute("user", new UserRepository());
+        model.addAttribute("user", new UserRepr());
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerNewUser(@ModelAttribute("user") @Valid UserRepository userRepository,
+    public String registerNewUser(@ModelAttribute("user") @Valid UserRepr userRepr,
                                   BindingResult result) {
 
-        logger.info("Now user {}", userRepository);
+        logger.info("Now user {}", userRepr);
         if (result.hasErrors()) {
             return "register";
         }
 
-        if (userRepository.getPassword().equals(userRepository.getMatchingPassword())) {
+        if (!userRepr.getPassword().equals(userRepr.getMatchingPassword())) {
             result.rejectValue("password", "", "Password not matching");
             return "register";
         }
 
+        userService.create(userRepr);
         return "redirect:/login";
     }
 

@@ -1,8 +1,8 @@
-package com.komegunov.todo.repository;
+package com.komegunov.todo.repr;
 
 import javax.validation.constraints.NotEmpty;
 
-public class UserRepository {
+public class UserRepr {
 
     private Long id;
 
@@ -15,7 +15,7 @@ public class UserRepository {
     @NotEmpty
     private String matchingPassword;
 
-    public UserRepository() {
+    public UserRepr() {
     }
 
     public Long getId() {
@@ -52,7 +52,7 @@ public class UserRepository {
 
     @Override
     public String toString() {
-        return "UserRepository{" +
+        return "UserRepr{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

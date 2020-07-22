@@ -1,4 +1,4 @@
-package com.komegunov.todo.repository;
+package com.komegunov.todo.repr;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public class TodoRepository {
+public class TodoRepr {
 
     private Long id;
 
@@ -19,7 +19,7 @@ public class TodoRepository {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate targetDate;
 
-    public TodoRepository() {
+    public TodoRepr() {
     }
 
     public Long getId() {
