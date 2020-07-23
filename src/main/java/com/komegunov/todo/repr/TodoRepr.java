@@ -1,5 +1,6 @@
 package com.komegunov.todo.repr;
 
+import com.komegunov.todo.persistence.entity.ToDo;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
@@ -20,6 +21,20 @@ public class TodoRepr {
     private LocalDate targetDate;
 
     public TodoRepr() {
+    }
+
+    public TodoRepr(Long id, @NotEmpty String description, String username, @NotNull LocalDate targetDate) {
+        this.id = id;
+        this.description = description;
+        this.username = username;
+        this.targetDate = targetDate;
+    }
+
+    public TodoRepr(ToDo toDo) {
+        this.id = toDo.getId();
+        this.description = toDo.getDescription();
+        this.targetDate = toDo.getTargetDate();
+        this.username = toDo.getUser().getUsername();
     }
 
     public Long getId() {

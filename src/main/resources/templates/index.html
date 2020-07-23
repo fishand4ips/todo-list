@@ -44,7 +44,7 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <a class="btn btn-primary" th:href="@{/todo}">Add Todo</a>
+            <a class="btn btn-primary" th:href="@{/todo/create}">Add Todo</a>
         </div>
 
         <div class="col-12">
@@ -59,34 +59,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Bootstrap 4 CDN and Starter Template</td>
-                    <td>Cristina</td>
-                    <td>01.01.2020</td>
-                    <td>
-                        <a class="btn btn-success" href="todo.html"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger" href="#"><i class="far fa-trash-alt"></i></a>
-                    </td>
+                <tr th:if="${todos.empty}">
+                    <td class="text-center" colspan="5">No date</td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Bootstrap Grid 4 Tutorial and Examples</td>
-                    <td>Cristina</td>
-                    <td>01.01.2020</td>
+                <tr th:each="todo : ${todos}">
+                    <th scope="row" th:text="*{todo.id}">1</th>
+                    <td th:text="${todo.description}">Bootstrap 4 CDN and Starter Template</td>
+                    <td th:text="${todo.username}">Cristina</td>
+                    <td th:text="${todo.targetDate}">01.01.2020</td>
                     <td>
-                        <a class="btn btn-success" href="todo.html"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger" href="#"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Bootstrap Flexbox Tutorial and Examples</td>
-                    <td>Cristina</td>
-                    <td>01.01.2020</td>
-                    <td>
-                        <a class="btn btn-success" href="todo.html"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger" href="#"><i class="far fa-trash-alt"></i></a>
+                        <a class="btn btn-success" th:href="@{/todo/{id}(id=${todo.id})}"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" th:href="@{/todo/delete/{id}(id=${todo.id})}"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 </tbody>
