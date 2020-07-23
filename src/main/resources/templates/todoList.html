@@ -4,12 +4,9 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-<!--    <link rel="stylesheet" href="tacit-css.min.css"/>-->
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
@@ -17,9 +14,8 @@
 </head>
 
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" th:href="@{/}">ToDo</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" th:href="@{/todo/all}">ToDo</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,14 +25,24 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/}">List</a>
+                <a class="nav-link" th:href="@{/todo}">List</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">Testimonials</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">Blog</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">Portfolio</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">Contact us</a>
             </li>
         </ul>
 
         <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-            <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/login}">Login</a>
             <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0">Logout</button>
-            <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/register}">Register</a>
         </form>
     </div>
 </nav>
@@ -60,7 +66,7 @@
                 </thead>
                 <tbody>
                 <tr th:if="${todos.empty}">
-                    <td class="text-center" colspan="5">No date</td>
+                    <td class="text-center" colspan="5">No data</td>
                 </tr>
                 <tr th:each="todo : ${todos}">
                     <th scope="row" th:text="*{todo.id}">1</th>
@@ -78,8 +84,6 @@
     </div>
 </div>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

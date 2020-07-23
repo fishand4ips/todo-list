@@ -1,7 +1,5 @@
 package com.komegunov.todo.persistence.entity;
 
-import com.komegunov.todo.repr.TodoRepr;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 

@@ -6,11 +6,13 @@ import com.komegunov.todo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -25,11 +27,17 @@ public class TodoController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String indexPage(Model model) {
-        List<TodoRepr> todos = toDoService.findToDoByUserId(userService.getCurrentUserId().orElseThrow(ResourceNotFoundException::new));
+    @GetMapping("")
+    public String mainPage() {
+        return "redirect:/todo/all";
+    }
+
+    @GetMapping("/todo/all")
+    public String allToDosPage(Model model) {
+        List<TodoRepr> todos = toDoService.findToDoByUserId(userService.getCurrentUserId()
+                .orElseThrow(ResourceNotFoundException::new));
         model.addAttribute("todos", todos);
-        return "index";
+        return "todoList";
     }
 
     @GetMapping("/todo/{id}")
@@ -46,7 +54,12 @@ public class TodoController {
     }
 
     @PostMapping("/todo/create")
-    public String createToDoPost(@ModelAttribute("todo") TodoRepr todoRepr) {
+    public String createTodoPost(@ModelAttribute("todo") @Valid TodoRepr todoRepr, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "todo";
+        }
+
         toDoService.save(todoRepr);
         return "redirect:/";
     }
