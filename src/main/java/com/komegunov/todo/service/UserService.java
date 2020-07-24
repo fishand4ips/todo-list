@@ -32,9 +32,4 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Optional<Long> getCurrentUserId() {
-        return getCurrentUser()
-                .flatMap(userRepository::getUserByUsername)
-                .map(User::getId);
-    }
 }

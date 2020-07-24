@@ -7,7 +7,6 @@ import com.komegunov.todo.repr.TodoRepr;
 import com.komegunov.todo.security.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -31,10 +30,9 @@ public class ToDoService {
                 .map(TodoRepr::new);
     }
 
-    public List<TodoRepr> findToDoByUserId(Long userId) {
-        return toDoRepository.findToDoByUserId(userId);
+    public List<TodoRepr> findToDoByUser_Username(String username) {
+        return toDoRepository.findToDoByUser_Username(username);
     }
-
     public void save(TodoRepr toDoRepr) {
         Utils.getCurrentUser()
                 .flatMap(userRepository::getUserByUsername)

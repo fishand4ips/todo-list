@@ -1,6 +1,8 @@
 package com.komegunov.todo.security;
 
 import com.komegunov.todo.persistence.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +17,8 @@ import java.util.Collections;
 @Transactional
 public class UserAuthService implements UserDetailsService {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserAuthService.class);
+
     private final UserRepository userRepository;
 
     @Autowired
@@ -24,6 +28,7 @@ public class UserAuthService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        logger.info("Spring security loading user by name");
         return userRepository.getUserByUsername(username)
                 .map(user -> new org.springframework.security.core.userdetails.User(
                         user.getUsername(),

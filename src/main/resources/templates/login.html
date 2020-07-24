@@ -6,13 +6,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="logo ToDo icon" href="https://image.flaticon.com/icons/svg/2928/2928733.svg" type="image/svg">
 
     <link rel="stylesheet" href="jumbotron.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-    <title>Login</title>
+    <title>ToDo | Home page</title>
 </head>
 
 <body>
@@ -26,20 +27,30 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">List</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">Testimonials</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">Blog</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">Portfolio</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">Contact us</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown link
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
             </li>
         </ul>
 
@@ -53,28 +64,6 @@
 
 
 <div class="jumbotron">
-    <div class="container-icon">
-        <a class="lang-logo" href="https://github.com">
-            <img src="https://image.flaticon.com/icons/svg/2111/2111292.svg" alt="loading...">
-        </a>
-        <a class="lang-logo" href="https://vk.com">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSuYoNzyRnIjKW4wXfwQ8QGP6PDN3uXunmx3Q&usqp=CAU" alt="loading...">
-        </a>
-        <a class="lang-logo" href="/">
-            <img src="https://image.flaticon.com/icons/svg/2111/2111646.svg" alt="loading...">
-        </a>
-        <a class="lang-logo" href="/">
-            <img src="https://image.flaticon.com/icons/svg/733/733585.svg" alt="loading...">
-        </a>
-        <a class="lang-logo" href="/">
-            <img src="https://image.flaticon.com/icons/svg/145/145802.svg" alt="loading...">
-        </a>
-        <a class="lang-logo" href="https://www.google.com">
-            <img src="https://image.flaticon.com/icons/svg/2913/2913970.svg" alt="loading...">
-        </a>
-    </div>
-</div>
-
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
@@ -92,6 +81,34 @@
                 <a class="px-3" th:href="@{/register}">Register</a>
             </form>
         </div>
+    </div>
+</div>
+
+    <div class="container-icon">
+        <a class="lang-logo" href="https://www.linkedin.com">
+            <img src="https://image.flaticon.com/icons/svg/179/179330.svg" alt="loading...">
+        </a>
+        <a class="lang-logo" href="https://www.vk.com">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSuYoNzyRnIjKW4wXfwQ8QGP6PDN3uXunmx3Q&usqp=CAU" alt="loading...">
+        </a>
+        <a class="lang-logo" href="https://www.telegram.com">
+            <img src="https://image.flaticon.com/icons/svg/2111/2111646.svg" alt="loading...">
+        </a>
+        <a class="lang-logo" href="https://www.whatsapp.com">
+            <img src="https://image.flaticon.com/icons/svg/733/733585.svg" alt="loading...">
+        </a>
+        <a class="lang-logo" href="https://www.facebook.com">
+            <img src="https://image.flaticon.com/icons/svg/145/145802.svg" alt="loading...">
+        </a>
+        <a class="lang-logo" href="https://www.google.com">
+            <img src="https://image.flaticon.com/icons/svg/2913/2913970.svg" alt="loading...">
+        </a>
+        <a class="lang-logo" href="https://www.twitter.com">
+            <img src="https://image.flaticon.com/icons/svg/179/179342.svg" alt="loading...">
+        </a>
+        <a class="lang-logo" href="https://www.instagram.com">
+            <img src="https://image.flaticon.com/icons/svg/355/355975.svg" alt="loading...">
+        </a>
     </div>
 </div>
 
