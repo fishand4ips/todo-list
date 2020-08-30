@@ -3,7 +3,6 @@ package com.komegunov.todo.controllers;
 import com.komegunov.todo.controllers.except.ResourceNotFoundException;
 import com.komegunov.todo.repr.TodoRepr;
 import com.komegunov.todo.service.ToDoService;
-import com.komegunov.todo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -20,7 +20,7 @@ import static com.komegunov.todo.security.Utils.getCurrentUser;
 @Controller
 public class TodoController {
 
-    private ToDoService toDoService;
+    private final ToDoService toDoService;
 
     @Autowired
     public TodoController(ToDoService toDoService) {
@@ -38,6 +38,7 @@ public class TodoController {
                 .map(toDoService::findToDoByUser_Username)
                 .orElseThrow(IllegalStateException::new);
         model.addAttribute("todos", todos);
+        model.addAttribute("userok", getCurrentUser().get());
         return "todoList";
     }
 

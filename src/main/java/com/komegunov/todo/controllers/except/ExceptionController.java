@@ -19,7 +19,6 @@ public class ExceptionController {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ModelAndView handleNotFoundErrors(HttpServletRequest req, Exception ex) {
         logger.error("Request: {} raised {}", req.getRequestURL(), ex);
-
         ModelAndView modelAndView = new ModelAndView("error");
         modelAndView.setStatus(HttpStatus.NOT_FOUND);
         return modelAndView;
@@ -28,7 +27,6 @@ public class ExceptionController {
     @ExceptionHandler(Exception.class)
     public ModelAndView handleOtherErrors(HttpServletRequest req, Exception ex) {
         logger.error("Request: {} raised {}", req.getRequestURL(), ex);
-
         ModelAndView modelAndView = new ModelAndView("error");
         modelAndView.addObject("exception", ex);
         modelAndView.addObject("url", req.getRequestURL());

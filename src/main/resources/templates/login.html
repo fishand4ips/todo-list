@@ -1,125 +1,54 @@
 <!doctype html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="logo ToDo icon" href="https://image.flaticon.com/icons/svg/2928/2928733.svg" type="image/svg">
-
-    <link rel="stylesheet" href="jumbotron.css">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-    <title>ToDo | Home page</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="ToDo list" name="description"/>
+    <meta content="Alexander Komegunov" name="author"/>
+    <meta
+            content="todo, todo list, ToDo list, to-do list, ToDo,
+            To-Do"
+            name="keywords"
+    />
+    <link href="https://image.flaticon.com/icons/svg/2928/2928733.svg" rel="shortcut icon"/>
+    <link media="all" rel="stylesheet" th:href="@{/css/jumbotron.css}" type="text/css">
+    <link media="all" rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+    <link media="all" rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+    <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet"/>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <title>ToDo | Login</title>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" th:href="@{/}">ToDo</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">List</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Testimonials</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Blog</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Portfolio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Contact us</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-
-        <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-            <a class="btn btn-outline-success my-2 my-sm-0 mr-2" th:href="@{/login}">Login</a>
-            <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0">Logout</button>
-            <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/register}">Register</a>
-        </form>
-    </div>
-</nav>
-
-
-<div class="jumbotron">
-<div class="container">
-    <div class="row py-2">
-        <div class="col-12">
-            <form th:action="@{/authenticateTheUser}" method="post">
-                <div class="form-group">
-                    <label for="username">User name</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter user name">
-                    <small class="form text text-danger" th:if="${param.error != null}">Incorrect username or password</small>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-                <a class="px-3" th:href="@{/register}">Register</a>
-            </form>
+<div class="login-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <form class="login" method="post" th:action="@{/authenticateTheUser}">
+                    <div class="form-group">
+                        <input class="form-control" id="username" name="username" placeholder="Enter username"
+                               type="text">
+                        <small class="form text text-danger" th:if="${param.error != null}">Incorrect username</small>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="password" name="password" placeholder="Password"
+                               type="password">
+                        <small class="form text text-danger" th:if="${param.error != null}">Incorrect password</small>
+                    </div>
+                    <button class="btn btn-unique" type="submit">Login</button>
+                    <a th:href="@{/register}">Register</a>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
-    <div class="container-icon">
-        <a class="lang-logo" href="https://www.linkedin.com">
-            <img src="https://image.flaticon.com/icons/svg/179/179330.svg" alt="loading...">
-        </a>
-        <a class="lang-logo" href="https://www.vk.com">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSuYoNzyRnIjKW4wXfwQ8QGP6PDN3uXunmx3Q&usqp=CAU" alt="loading...">
-        </a>
-        <a class="lang-logo" href="https://www.telegram.com">
-            <img src="https://image.flaticon.com/icons/svg/2111/2111646.svg" alt="loading...">
-        </a>
-        <a class="lang-logo" href="https://www.whatsapp.com">
-            <img src="https://image.flaticon.com/icons/svg/733/733585.svg" alt="loading...">
-        </a>
-        <a class="lang-logo" href="https://www.facebook.com">
-            <img src="https://image.flaticon.com/icons/svg/145/145802.svg" alt="loading...">
-        </a>
-        <a class="lang-logo" href="https://www.google.com">
-            <img src="https://image.flaticon.com/icons/svg/2913/2913970.svg" alt="loading...">
-        </a>
-        <a class="lang-logo" href="https://www.twitter.com">
-            <img src="https://image.flaticon.com/icons/svg/179/179342.svg" alt="loading...">
-        </a>
-        <a class="lang-logo" href="https://www.instagram.com">
-            <img src="https://image.flaticon.com/icons/svg/355/355975.svg" alt="loading...">
-        </a>
-    </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
 </body>
 </html>

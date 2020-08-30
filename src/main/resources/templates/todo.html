@@ -1,83 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" dir="ltr">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="logo ToDo icon" href="https://image.flaticon.com/icons/svg/2928/2928733.svg" type="image/svg">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-    <title>ToDo | Edit of records</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="ToDo list"/>
+    <meta name="author" content="Alexander Komegunov"/>
+    <meta
+            name="keywords"
+            content="todo, todo list, ToDo list, to-do list, ToDo,
+            To-Do"
+    />
+    <link href="https://image.flaticon.com/icons/svg/2928/2928733.svg" rel="shortcut icon"/>
+    <link media="all" th:href="@{/css/jumbotron.css}" rel="stylesheet" type="text/css">
+    <link media="all" th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet"/>
+    <title>Todo | Create</title>
 </head>
-
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" th:href="@{/}">ToDo</a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/todo/all}">List</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Testimonials</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Blog</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Portfolio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Contact us</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-
-        <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-            <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0">Logout</button>
+<nav>
+    <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+        <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-1">Logout</button>
+    </form>
+</nav>
+<div class="main">
+    <h1>TO-DO LIST</h1>
+    <div class="tasksBoard">
+        <form th:action="@{/todo/create}" th:object="${todo}" method="post">
+            <ul>
+            <input type="hidden" th:field="*{id}">
+            <li><div>
+                <label for="description">Description</label><br>
+                <input type="text" class="form-control" id="description" th:field="*{description}" placeholder="Enter description">
+                <small class="text-danger" th:each="err: ${#fields.errors('description')}" th:text="${err}"></small>
+            </div></li>
+            <li><div>
+                <label for="target-date">Target date</label><br>
+                <input type="date" class="form-control" id="target-date" th:field="*{targetDate}" >
+                <small class="text-danger" th:each="err: ${#fields.errors('targetDate')}" th:text="${err}"></small>
+            </div></li>
+            <button type="submit" class="btn-create-form">Submit</button>
+            </ul>
         </form>
     </div>
-</nav>
-
-<div class="container">
-    <div class="row py-2">
-        <div class="col-12">
-            <form th:action="@{/todo/create}" th:object="${todo}" method="post">
-                <input type="hidden" th:field="*{id}">
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <input type="text" class="form-control" id="description" th:field="*{description}" placeholder="Enter description">
-                    <small class="text-danger" th:each="err: ${#fields.errors('description')}" th:text="${err}"></small>
-                </div>
-                <div class="form-group">
-                    <label for="target-date">Target date</label>
-                    <input type="date" class="form-control" id="target-date" th:field="*{targetDate}" >
-                    <small class="text-danger" th:each="err: ${#fields.errors('targetDate')}" th:text="${err}"></small>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
