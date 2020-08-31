@@ -70,6 +70,10 @@ button {
     border-color: #53BDFF;
 }
 
+.btn {
+    padding: 0;
+}
+
 form .btn-create-form {
     margin-left: 230px;
     margin-top: 15px;
@@ -81,6 +85,9 @@ form .btn-create-form {
 
 ul {
     list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+
 }
 
 li {

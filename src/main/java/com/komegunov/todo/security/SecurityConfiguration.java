@@ -39,12 +39,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/register")
                 .loginProcessingUrl("/authenticateTheUser")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/register")
                 .permitAll();
     }
 

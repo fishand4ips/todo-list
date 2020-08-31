@@ -14,21 +14,20 @@
             To-Do"
     />
     <link href="https://image.flaticon.com/icons/svg/2928/2928733.svg" rel="shortcut icon"/>
-    <link media="all" th:href="@{/css/jumbotron.css}" rel="stylesheet" type="text/css">
-    <link media="all" th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
+    <link media="all" th:href="@{.}" rel="stylesheet" type="text/css">
+    <link media="all" th:href="@{.}" rel="stylesheet" type="text/css">
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet"/>
     <title>Todo | Create</title>
 </head>
 <body>
-<nav>
-    <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-        <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-1">Logout</button>
-    </form>
-</nav>
+
+<form class="out" th:action="@{/logout}" method="post">
+    <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-1">Logout</button>
+</form>
+
 <div class="main">
-    <h1>TO-DO LIST</h1>
     <div class="tasksBoard">
         <form th:action="@{/todo/create}" th:object="${todo}" method="post">
             <ul>
@@ -43,7 +42,7 @@
                 <input type="date" class="form-control" id="target-date" th:field="*{targetDate}" >
                 <small class="text-danger" th:each="err: ${#fields.errors('targetDate')}" th:text="${err}"></small>
             </div></li>
-            <button type="submit" class="btn-create-form">Submit</button>
+            <button type="submit">Submit</button>
             </ul>
         </form>
     </div>

@@ -34,7 +34,7 @@ public class LoginController {
     @GetMapping("/register")
     public String registerPage(Model model) {
         model.addAttribute("user", new UserRepr());
-        return "register";
+        return "login";
     }
 
     @PostMapping("/register")
@@ -43,16 +43,16 @@ public class LoginController {
 
         logger.info("Now user {}", userRepr);
         if (result.hasErrors()) {
-            return "register";
+            return "login";
         }
 
         if (!userRepr.getPassword().equals(userRepr.getMatchingPassword())) {
             result.rejectValue("password", "", "Password not matching");
-            return "register";
+            return "login";
         }
 
         userService.create(userRepr);
-        return "redirect:/login";
+        return "login";
     }
 
 }

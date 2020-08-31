@@ -1,76 +1,61 @@
 <!doctype html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="ToDo list"/>
-    <meta name="author" content="Alexander Komegunov"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="ToDo list" name="description"/>
+    <meta content="Alexander Komegunov" name="author"/>
     <meta
-            name="keywords"
             content="todo, todo list, ToDo list, to-do list, ToDo,
             To-Do"
+            name="keywords"
     />
     <link href="https://image.flaticon.com/icons/svg/2928/2928733.svg" rel="shortcut icon"/>
-    <link media="all" th:href="@{/css/jumbotron.css}" rel="stylesheet" type="text/css">
-    <link media="all" th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
-    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet"/>
-    <title>ToDo | Full list</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link media="all" rel="stylesheet" th:href="@{/all-front/css/table.css}" type="text/css">
+    <title>ToDo | All</title>
 </head>
 <body>
 
-<form class="out" th:action="@{/logout}" method="post">
-    <button sec:authorize="isAuthenticated()" class="btn primary my-2 my-sm-0">Logout</button>
+<form class="out" method="post" th:action="@{/logout}">
+    <button class="btn btn-primary btn-lg" sec:authorize="isAuthenticated()">Logout</button>
 </form>
 
 <span class="userok" th:utext="${userok}">user</span>
 
-<div class="mainTask">
-    <div class="tasksBoard">
-        <div class="col-12">
-            <a class="btn btn-primary btn-lg btn-block" th:href="@{/todo/create}">Add Todo</a>
-        </div>
-
-        <div class="col-12">
-            <table class="table table-bordered my-2">
-                <thead>
-                <tr>
-                    <th scope="col">Description</th>
-                    <th scope="col">Target date</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:if="${todos.empty}">
-                    <td class="text-center" colspan="5">Now zero todo</td>
-                </tr>
-                <tr th:each="todo : ${todos}">
-                    <td th:text="${todo.description}">desc</td>
-                    <td th:text="${todo.targetDate}">07.11.1998</td>
-                    <td>
-                        <a class="btn btn-success" th:href="@{/todo/{id}(id=${todo.id})}" data-toggle="top" title="Edit ToDo"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger" th:href="@{/todo/delete/{id}(id=${todo.id})}" data-toggle="top" title="Delete ToDo"><i class="far fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="container">
+    <div class="over">
+    <table class="responsive-table">
+        <thead>
+        <tr>
+            <th scope="col">Action</th>
+            <th scope="col">Description</th>
+            <th scope="col">Target date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${todos.empty}">
+            <td>Now zero todo</td>
+        </tr>
+        <tr th:each="todo : ${todos}">
+            <td>
+                <a class="success" data-toggle="top" th:href="@{/todo/{id}(id=${todo.id})}"
+                   title="Edit ToDo"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;&nbsp;
+                <a class="delete" data-toggle="top" th:href="@{/todo/delete/{id}(id=${todo.id})}"
+                   title="Delete ToDo"><i class="far fa-trash-alt"></i></a>
+            </td>
+            <td th:text="${todo.description}">desc</td>
+            <td th:text="${todo.targetDate}">07.11.1998</td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary btn-lg btn-block" th:href="@{/todo/create}">Add Todo</a>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
