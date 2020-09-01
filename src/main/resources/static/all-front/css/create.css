@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    background: #f6f5f7;
+    color: black;
+}
+
+.container-create {
+    width: 50%;
+}
+
+.out {
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    right: 0
+}
+
+.userok {
+    padding: 25px;
+    position: absolute;
+    top: 5px;
+    right: 55px;
+}
+
+label {
+    color: white;
+}
+
+.btn-delete {
+    color: #FFF;
+    transition: all 0.5s;
+    position: relative;
+}
+
+.btn-delete span {
+    z-index: 2;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.btn-delete::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.5s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-delete::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.5s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-delete:hover::before {
+    transform: rotate(-45deg);
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.btn-delete:hover::after {
+    transform: rotate(45deg);
+    background-color: rgba(255, 255, 255, 0);
+}
+
+input[type="text"], input[type="date"] {
+    color: black;
+    margin: 0 0 0 0;
+}
+
+.btn {
+    border-radius: 20px;
+}

@@ -53,6 +53,7 @@ public class TodoController {
     @GetMapping("/todo/create")
     public String createToDoPage(Model model) {
         model.addAttribute("todo", new TodoRepr());
+        model.addAttribute("userok", getCurrentUser().get());
         return "todo";
     }
 

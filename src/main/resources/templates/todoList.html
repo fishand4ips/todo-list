@@ -17,45 +17,56 @@
     <link href="https://image.flaticon.com/icons/svg/2928/2928733.svg" rel="shortcut icon"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link media="all" rel="stylesheet" th:href="@{/all-front/css/table.css}" type="text/css">
+    <link media="all" rel="stylesheet" th:href="@{/all-front/css/delete.css}" type="text/css">
     <title>ToDo | All</title>
 </head>
 <body>
 
 <form class="out" method="post" th:action="@{/logout}">
-    <button class="btn btn-primary btn-lg" sec:authorize="isAuthenticated()">Logout</button>
+    <button class="btn btn-primary btn-lg" sec:authorize="isAuthenticated()">&#10006;</button>
 </form>
-
 <span class="userok" th:utext="${userok}">user</span>
 
-<div class="container">
+<div class="container-table">
     <div class="over">
-    <table class="responsive-table">
-        <thead>
-        <tr>
-            <th scope="col">Action</th>
-            <th scope="col">Description</th>
-            <th scope="col">Target date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${todos.empty}">
-            <td>Now zero todo</td>
-        </tr>
-        <tr th:each="todo : ${todos}">
-            <td>
-                <a class="success" data-toggle="top" th:href="@{/todo/{id}(id=${todo.id})}"
-                   title="Edit ToDo"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;&nbsp;
-                <a class="delete" data-toggle="top" th:href="@{/todo/delete/{id}(id=${todo.id})}"
-                   title="Delete ToDo"><i class="far fa-trash-alt"></i></a>
-            </td>
-            <td th:text="${todo.description}">desc</td>
-            <td th:text="${todo.targetDate}">07.11.1998</td>
-        </tr>
-        </tbody>
-    </table>
-    <a class="btn btn-primary btn-lg btn-block" th:href="@{/todo/create}">Add Todo</a>
+        <table class="responsive-table">
+            <thead>
+            <tr>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">Description</th>
+                <th scope="col">Target date</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${todos.empty}">
+                <td>Now zero todo</td>
+            </tr>
+            <tr th:each="todo : ${todos}">
+                <td>
+                    <input th:type="checkbox">
+                </td>
+                <td>
+                    <a class="success" data-toggle="top" th:href="@{/todo/{id}(id=${todo.id})}"
+                       title="edit todo">edit</a>
+                </td>
+                <td th:text="${todo.description}"></td>
+                <td th:text="${todo.targetDate}">07.11.1998</td>
+                <td>
+                    <div class="tbl">
+                        <div class="cell">
+                        <a class="trash" th:href="@{/todo/delete/{id}(id=${todo.id})}"></a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-primary btn-lg btn-block" th:href="@{/todo/create}">Add Todo</a>
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="../static/all-front/js/sign-in.js" th:src="@{/all-front/js/ch-box.js}" type="text/javascript"></script>
 </body>
 </html>

@@ -1,60 +1,54 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" dir="ltr">
+<html dir="ltr"
+      lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="ToDo list"/>
-    <meta name="author" content="Alexander Komegunov"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="ToDo list" name="description"/>
+    <meta content="Alexander Komegunov" name="author"/>
     <meta
-            name="keywords"
             content="todo, todo list, ToDo list, to-do list, ToDo,
             To-Do"
+            name="keywords"
     />
     <link href="https://image.flaticon.com/icons/svg/2928/2928733.svg" rel="shortcut icon"/>
-    <link media="all" th:href="@{.}" rel="stylesheet" type="text/css">
-    <link media="all" th:href="@{.}" rel="stylesheet" type="text/css">
-    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link media="all" rel="stylesheet" th:href="@{/all-front/css/create.css}" type="text/css">
     <title>Todo | Create</title>
 </head>
 <body>
 
-<form class="out" th:action="@{/logout}" method="post">
-    <button sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-1">Logout</button>
+<form class="out" method="post" th:action="@{/logout}">
+    <button class="btn btn-primary btn-lg" sec:authorize="isAuthenticated()">&#10006;</button>
 </form>
 
-<div class="main">
-    <div class="tasksBoard">
-        <form th:action="@{/todo/create}" th:object="${todo}" method="post">
-            <ul>
-            <input type="hidden" th:field="*{id}">
-            <li><div>
-                <label for="description">Description</label><br>
-                <input type="text" class="form-control" id="description" th:field="*{description}" placeholder="Enter description">
-                <small class="text-danger" th:each="err: ${#fields.errors('description')}" th:text="${err}"></small>
-            </div></li>
-            <li><div>
-                <label for="target-date">Target date</label><br>
-                <input type="date" class="form-control" id="target-date" th:field="*{targetDate}" >
-                <small class="text-danger" th:each="err: ${#fields.errors('targetDate')}" th:text="${err}"></small>
-            </div></li>
-            <button type="submit">Submit</button>
-            </ul>
-        </form>
-    </div>
+<a class="btn btn-primary btn-lg" th:href="@{/todo/all}">&larr;</a>
+
+<span class="userok" th:utext="${userok}">user</span>
+
+<div class="container-create">
+    <form method="post" th:action="@{/todo/create}" th:object="${todo}">
+        <ul>
+            <input th:field="*{id}" type="hidden">
+            <li>
+                <div>
+                    <input id="description" placeholder="Enter description" th:field="*{description}"
+                           type="text">
+                    <small class="text-danger" th:each="err: ${#fields.errors('description')}" th:text="${err}"></small>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <input id="target-date" placeholder="Choose a date" th:field="*{targetDate}" type="date">
+                    <small class="text-danger" th:each="err: ${#fields.errors('targetDate')}" th:text="${err}"></small>
+                </div>
+            </li>
+            <button style="margin-top: 15px;" class="btn btn-primary btn-lg" type="submit">Submit</button>
+        </ul>
+    </form>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

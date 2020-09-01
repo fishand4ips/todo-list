@@ -7,44 +7,38 @@ body {
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
     height: 100vh;
-    background: #f7484e;
-    color: #ffffff;
+    background: #f6f5f7;
+    color: black;
+}
+
+h1 {
+    font-size: 64px;
 }
 
 .container-table {
-    width: 70%;
-}
-
-.delete {
-    background-color: #ff6161;
-    padding: 0 3px 0 3px;
-    color: #fff;
-    cursor: pointer;
-}
-
-.success {
-    background-color: darkgreen;
-    padding: 0 3px 0 3px;
-    color: #fff;
-    cursor: pointer;
+    width: 50%;
 }
 
 .out {
-    padding: 5px;
+    padding: 20px;
     position: absolute;
     top: 0;
     right: 0
 }
 
 .userok {
-    padding: 8px;
+    padding: 25px;
     position: absolute;
     top: 5px;
-    right: 100px;
+    right: 55px;
 }
 
 .btn-block {
     display: inline-block;
     margin-top: 20px;
+}
+
+.btn {
+    border-radius: 20px;
 }
 
