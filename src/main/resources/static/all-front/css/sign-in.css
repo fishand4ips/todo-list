@@ -211,42 +211,25 @@ input {
     transform: translateX(20%);
 }
 
-.social-container {
-    margin: 20px 0;
-}
+@media all and (max-width: 777px){
+    .container {
+        min-height: 330px;
+        font-size: 10px;
+    }
 
-.social-container a {
-    border: 1px solid #dddddd;
-    border-radius: 50%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 5px;
-    height: 40px;
-    width: 40px;
-}
+    input {
+        padding: 8px 5px;
+        margin: 5px 0;
+        width: 150%;
+    }
 
-footer {
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
-    bottom: 0;
-    position: fixed;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 999;
-}
+    button {
+        font-size: 10px;
+        padding: 5px 35px;
+    }
 
-footer p {
-    margin: 10px 0;
-}
-
-footer i {
-    color: red;
-}
-
-footer a {
-    color: #3c97bf;
-    text-decoration: none;
+    a {
+        font-size: 10px;
+        margin: 10px 0;
+    }
 }

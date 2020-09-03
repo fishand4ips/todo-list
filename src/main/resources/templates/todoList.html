@@ -49,14 +49,17 @@
                 </td>
                 <td>
                     <a class="success" data-toggle="top" th:href="@{/todo/{id}(id=${todo.id})}"
-                       title="edit todo">edit</a>
+                       title="edit todo">&#x270E;<br><p style="font-size: 10px;margin: 0 0 0 0">edit</p></a>
+
                 </td>
                 <td th:text="${todo.description}"></td>
                 <td th:text="${todo.targetDate}">07.11.1998</td>
                 <td>
                     <div class="tbl">
                         <div class="cell">
-                        <a class="trash" th:href="@{/todo/delete/{id}(id=${todo.id})}"></a>
+                        <a class="trash" th:href="@{/todo/delete/{id}(id=${todo.id})}">
+                            <br><p style="font-size: 10px; color: #f7484e;margin: -5px 0 0 -11px;">delete</p>
+                        </a>
                         </div>
                     </div>
                 </td>

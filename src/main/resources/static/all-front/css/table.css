@@ -42,3 +42,13 @@ h1 {
     border-radius: 20px;
 }
 
+@media all and (max-width: 777px) {
+    .container-table {
+        width: 80%;
+    }
+
+    .btn-block {
+        margin-top: 40px;
+    }
+}
+
