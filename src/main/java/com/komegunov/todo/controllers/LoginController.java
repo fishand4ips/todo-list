@@ -26,11 +26,6 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login";
-    }
-
     @GetMapping("/register")
     public String registerPage(Model model) {
         model.addAttribute("user", new UserRepr());

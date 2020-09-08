@@ -14,7 +14,7 @@
     <artifactId>todo-list</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>todo-list</name>
-    <description>ToDo list project for Spring Boot</description>
+    <description>ToDo list project with use Spring Boot</description>
 
     <properties>
         <java.version>11</java.version>
@@ -72,6 +72,11 @@
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
