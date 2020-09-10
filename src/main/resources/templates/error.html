@@ -4,7 +4,6 @@
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="ToDo list" name="description"/>
     <meta content="Alexander Komegunov" name="author"/>
     <meta
@@ -17,10 +16,13 @@
     <title>Todo | Error</title>
 </head>
 <body>
-    <div class="col-12">
-        <h1>Error</h1>
-        <p th:text="${#response.status}"></p>
-        <p th:text="${exception?.localizedMessage}"></p>
-    </div>
+<div>
+    <h1>Error</h1>
+    <span>
+        Looks like there's nothing here.
+        Maybe you should go back <a th:href="@{/register}">login or register.</a>
+        </span>
+    <p style="color: darkred" th:text="${#response.status}"></p>
+</div>
 </body>
 </html>
